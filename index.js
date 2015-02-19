@@ -1,33 +1,9 @@
+'use strict';
 var express = require('express');
 var serveStatic = require('serve-static');
 var extend = require('extend');
-
-var app = express();
-app.use(function(req, res, next){
-	next();
-});
-
-app.use(serveStatic('public', {index: 'index.html'}));
-app.use(function(req, res, next){
-	var options = extend(
-		{
-			grayScale: false,
-			width: 0,
-			height: 0
-		},
-		parseOptionsFromPath(req.path)
-	);
-
-	if(!options.width){
-		res.status(404).end();
-		return;
-	}
-
-
-	res.set('Content-Type', 'image/png');
-	res.send(createImage(options)).end();
-});
-app.listen(3000);
+var fs = require('fs');
+var filesCache = null;
 
 function parseOptionsFromPath(fullPath){
 	var path = fullPath.replace(/\//g, ' ').trim();
@@ -58,9 +34,47 @@ function createImage(options){
 	var canvas = new Canvas(options.width, options.height);
 	var ctx = canvas.getContext('2d');
 
-	ctx.font = '30px Impact';
-	ctx.rotate(0.1);
-	ctx.fillText("This will be a badger", 50, 100);
+	//Grab a random image
+	if(!filesCache){
+		filesCache = fs.readdirSync('images');
+	}
+
+	var srcImageName = filesCache[Math.floor( Math.random() * filesCache.length)];
+	console.log('images/'+srcImageName);
+	var srcImageBuffer = fs.readFileSync('images/'+srcImageName);
+	var srcImg = new Image;
+	srcImg.src = srcImageBuffer;
+	//return srcImageBuffer;
+
+	ctx.drawImage(srcImg, 0, 0, options.width, options.height);
 
 	return canvas.toBuffer();
 }
+
+
+var app = express();
+app.use(function(req, res, next){
+	next();
+});
+
+app.use(serveStatic('public', {index: 'index.html'}));
+app.use(function(req, res){
+	var options = extend(
+		{
+			grayScale: false,
+			width: 0,
+			height: 0
+		},
+		parseOptionsFromPath(req.path)
+	);
+
+	if(!options.width){
+		res.status(404).end();
+		return;
+	}
+
+
+	res.set('Content-Type', 'image/png');
+	res.send(createImage(options)).end();
+});
+app.listen(3000);

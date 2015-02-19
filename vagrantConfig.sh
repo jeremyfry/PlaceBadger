@@ -15,6 +15,7 @@ echo "=========================================="
 
 #install git
 sudo apt-get -y install git
+sudo apt-get -y install libjpeg8-dev
 sudo apt-get -y install libcairo2-dev
 
 echo "Node Install"
