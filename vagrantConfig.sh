@@ -43,6 +43,7 @@ echo "=========================================="
 
 #install base npm packages
 sudo npm install -g nodemon
+sudo npm install -g node-inspector
 
 echo ""
 echo "=========================================="

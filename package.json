@@ -17,6 +17,7 @@
   "devDependencies": {
     "canvas": "^1.2.1",
     "express": "^4.11.2",
+    "extend": "^2.0.0",
     "serve-static": "^1.9.1"
   }
 }
