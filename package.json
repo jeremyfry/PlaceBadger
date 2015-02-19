@@ -1,0 +1,22 @@
+{
+  "name": "Jeremy",
+  "version": "1.0.0",
+  "description": "Deliver sized images of badgers to your browser!",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "Badger",
+    "Development",
+    "Placeholder",
+    "Images"
+  ],
+  "author": "Jeremy Fry",
+  "license": "ISC",
+  "devDependencies": {
+    "canvas": "^1.2.1",
+    "express": "^4.11.2",
+    "serve-static": "^1.9.1"
+  }
+}
