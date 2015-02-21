@@ -1,5 +1,5 @@
 {
-  "name": "Jeremy",
+  "name": "Place Badger",
   "version": "1.0.0",
   "description": "Deliver sized images of badgers to your browser!",
   "main": "index.js",
@@ -15,7 +15,7 @@
   "author": "Jeremy Fry",
   "license": "ISC",
   "devDependencies": {
-    "canvas": "^1.2.1",
+    "canvas": "1.1.6",
     "express": "^4.11.2",
     "extend": "^2.0.0",
     "q": "^1.1.2",
