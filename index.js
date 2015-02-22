@@ -84,12 +84,12 @@ function createImage(options){
 		grayScaleCanvas(ctx, options);
 	}
 
-	ctx.font = '25px Verdana';
+	ctx.font = '17px Verdana';
 	ctx.fillStyle = 'white';
 	ctx.strokeStyle = 'black';
 	ctx.lineWidth = 2;
-	ctx.strokeText(options.width+"x"+options.height, 10, 30);
-	ctx.fillText(options.width+"x"+options.height, 10, 30);
+	ctx.strokeText(options.width+"x"+options.height, 10, 20);
+	ctx.fillText(options.width+"x"+options.height, 10, 20);
 
 	return canvas.toBuffer();
 }
